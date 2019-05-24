@@ -10,7 +10,7 @@ Configuration
 1. Pull the image:
 
 ```bash
-docker pull sburn/apache-atlas:2.0.0
+sudo docker pull sburn/apache-atlas
 ```
 
 2. Start Apache Atlas container exposing default port 21000:
