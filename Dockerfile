@@ -10,7 +10,7 @@ RUN apt-get update && \
     wget \
     git \
     python \
-    openjdk-11-jdk-headless \
+    openjdk-8-jdk-headless \
     patch
 
 RUN cd /tmp && \
