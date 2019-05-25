@@ -29,7 +29,7 @@ RUN cd /tmp \
     && tar -xzvf /tmp/atlas-src/distro/target/apache-atlas-${VERSION}-server.tar.gz -C /opt \
     && rm -Rf /tmp/atlas-src
 
-COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin
+COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin/
 COPY pre-conf/atlas-application.properties /opt/apache-atlas-${VERSION}/conf/atlas-application.properties
 COPY pre-conf/atlas-env.sh /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
