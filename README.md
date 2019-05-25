@@ -76,7 +76,7 @@ The following environment variables are available for configuration:
 
 | Name | Default | Description |
 |------|---------|-------------|
-| JAVA_HOME | /usr/lib/jvm/java-11-openjdk-amd64 | The java implementation to use. If JAVA_HOME is not found we expect java and jar to be in path
+| JAVA_HOME | /usr/lib/jvm/java-8-openjdk-amd64 | The java implementation to use. If JAVA_HOME is not found we expect java and jar to be in path
 | ATLAS_OPTS | <none> | any additional java opts you want to set. This will apply to both client and server operations
 | ATLAS_CLIENT_OPTS | <none> | any additional java opts that you want to set for client only
 | ATLAS_CLIENT_HEAP | <none> | java heap size we want to set for the client. Default is 1024MB
