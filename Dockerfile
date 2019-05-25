@@ -17,7 +17,7 @@ RUN cd /tmp \
     && wget http://mirror.linux-ia64.org/apache/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
     && mkdir /tmp/atlas-src \
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
-    && rm apache-atlas-${VERSION}-sources.tar.gz
+    && rm apache-atlas-${VERSION}-sources.tar.gz \
     && cd /tmp/atlas-src \
     && wget --no-check-certificate https://github.com/apache/atlas/pull/20.patch \
     && git apply ./20.patch \
