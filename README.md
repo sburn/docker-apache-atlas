@@ -19,7 +19,7 @@ sudo docker pull sburn/apache-atlas
 sudo docker run --detach \
     -p 21000:21000 \
     --name atlas \
-    apache-atlas:2.0.0 \
+    apache-atlas \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
