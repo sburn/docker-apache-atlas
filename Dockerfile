@@ -5,7 +5,7 @@ ARG VERSION=2.0.0
 
 RUN apt-get update \
     && apt-get -y upgrade \
-    && apt-get install apt-utils \
+    && apt-get -y install apt-utils \
     && apt-get -y install \
         maven \
         wget \
