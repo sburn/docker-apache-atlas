@@ -19,7 +19,7 @@ sudo docker pull sburn/apache-atlas
 sudo docker run --detach \
     -p 21000:21000 \
     --name atlas \
-    apache-atlas \
+    sburn/apache-atlas \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
@@ -43,7 +43,7 @@ sudo docker run --detach \
     -e "ATLAS_SERVER_OPTS=-server -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+PrintTenuringDistribution -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=dumps/atlas_server.hprof -Xloggc:logs/gc-worker.log -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1m -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCTimeStamps"
     -p 21000:21000 \
     --name atlas \
-    apache-atlas:2.0.0 \
+    sburn/apache-atlas \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
@@ -54,7 +54,7 @@ sudo docker run --detach \
     -v ${PWD}/atlas-logs:/opt/apache-atlas-2.0.0/logs \
     -p 21000:21000 \
     --name atlas \
-    apache-atlas:2.0.0 \
+    sburn/apache-atlas \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
@@ -65,7 +65,7 @@ sudo docker run --detach \
     -v ${PWD}/pre-conf:/opt/apache-atlas-2.0.0/conf \
     -p 21000:21000 \
     --name atlas \
-    apache-atlas:2.0.0 \
+    sburn/apache-atlas \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
