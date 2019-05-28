@@ -24,7 +24,6 @@ RUN cd /tmp \
     && git apply ./20.patch \
     && export MAVEN_OPTS="-Xms2g -Xmx2g" \
     && mvn clean -DskipTests install \
-    && mvn clean -DskipTests package -Pdist \
     && mvn clean -DskipTests package -Pdist,embedded-hbase-solr \
     && tar -xzvf /tmp/atlas-src/distro/target/apache-atlas-${VERSION}-server.tar.gz -C /opt \
     && rm -Rf /tmp/atlas-src
