@@ -4,7 +4,7 @@
 Apache Atlas Docker image
 =======================================
 
-This Apache Atlas is build from 2.0.0-release source tarball and patched to be run in a container.
+This Apache Atlas is build from 2.0.0-release source tarball and patched to be run in a Docker container.
 
 Configuration
 =============
