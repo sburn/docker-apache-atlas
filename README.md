@@ -7,7 +7,7 @@ Apache Atlas Docker image
 This Apache Atlas is build from 2.0.0-release source tarball and patched to be run in a Docker container.
 
 Basic usage
-===========
+-----------
 1. Pull the image:
 
 ```bash
@@ -25,7 +25,7 @@ sudo docker run --detach \
 ```
 
 Usage options
-=============
+-------------
 
 Apache Atlas is build with embeded HBase + Solr and pre-setuped (atlas_start.py -setup).
 If you want to use external Atlas backends, set them up in the config files according to [the documentation](https://atlas.apache.org/Configuration.html).
@@ -71,7 +71,7 @@ sudo docker run --detach \
 ```
 
 Environment Variables
-=====================
+---------------------
 
 The following environment variables are available for configuration:
 
@@ -90,14 +90,14 @@ The following environment variables are available for configuration:
 
 
 Bug Tracker
-===========
+-----------
 
 Bugs are tracked on [GitHub Issues](https://github.com/sburn/docker-apache-atlas/issues).
 In case of trouble, please check there to see if your issue has already been reported.
 If you spotted it first, help us smash it by providing detailed and welcomed feedback.
 
 Maintainer
-==========
+----------
 
 This image is maintained by [Vadim Korchagin](mailto:vadim@clusterside.com)
 
