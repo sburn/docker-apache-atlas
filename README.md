@@ -8,7 +8,7 @@ This Apache Atlas is built from the 2.0.0-release source tarball and patched to 
 
 Atlas is built with embedded HBase + Solr and it is pre-initialized (atlas_start.py -setup), so you can run Artas after image download without additional steps.
 
-If you want to use external Atlas backends, set them up according to [the documentation](https://atlas.apache.org/Configuration.html).
+If you want to use external Atlas backends, set them up according to [the documentation](https://atlas.apache.org/#/Configuration).
 
 Basic usage
 -----------
