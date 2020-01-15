@@ -1,5 +1,5 @@
 --- atlas_config.py.orig	2019-05-03 08:22:00.000000000 +0300
-+++ atlas_config.py	2020-01-16 01:37:41.803907805 +0300
++++ atlas_config.py	2020-01-16 02:14:31.660601445 +0300
 @@ -500,15 +500,18 @@
  
  def wait_for_startup(confdir, wait):
@@ -27,7 +27,7 @@
          if count > wait:
 -            s.close()
 -            break
-+        s.close()
++	    s.close()
 +            sys.stdout.write('\nAtlas Web-UI startup timed out! But, wait for it...')
 +            sys.stdout.flush()
 +	    break
