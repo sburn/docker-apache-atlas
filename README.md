@@ -55,7 +55,7 @@ Start Atlas overriding settings by environment variables
 (to support large number of metadata objects for example):
 
 ```bash
-sudo docker run --detach \
+docker run --detach \
     -e "ATLAS_SERVER_OPTS=-server -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+PrintTenuringDistribution -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=dumps/atlas_server.hprof -Xloggc:logs/gc-worker.log -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1m -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCTimeStamps"
     -p 21000:21000 \
     --name atlas \
@@ -66,7 +66,7 @@ sudo docker run --detach \
 Expose logs directory on the host to view them directly:
 
 ```bash
-sudo docker run --detach \
+docker run --detach \
     -v ${PWD}/atlas-logs:/opt/apache-atlas-2.0.0/logs \
     -p 21000:21000 \
     --name atlas \
@@ -77,7 +77,7 @@ sudo docker run --detach \
 Expose conf directory on the host to edit configuration files directly:
 
 ```bash
-sudo docker run --detach \
+docker run --detach \
     -v ${PWD}/pre-conf:/opt/apache-atlas-2.0.0/conf \
     -p 21000:21000 \
     --name atlas \
