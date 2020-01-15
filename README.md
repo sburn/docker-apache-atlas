@@ -15,18 +15,20 @@ Basic usage
 1. Pull the image:
 
 ```bash
-sudo docker pull sburn/apache-atlas
+docker pull sburn/apache-atlas
 ```
 
-2. Start Apache Atlas container exposing default port 21000:
+2. Start Apache Atlas in a container exposing Web-UI port 21000:
 
 ```bash
-sudo docker run --detach \
+docker run --detach \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
+
+Please, take into account that at fist run Atlas initialize internal schemas and startup may take up to 10 mins depending on host machine performance.
 
 Usage options
 -------------
@@ -34,7 +36,19 @@ Usage options
 Gracefully stop Atlas:
 
 ```bash
-sudo docker exec -ti atlas /opt/apache-atlas-2.0.0/bin/atlas_stop.py
+docker exec -ti atlas /opt/apache-atlas-2.0.0/bin/atlas_stop.py
+```
+
+Check Atlas startup script output:
+
+```bash
+docker logs -f atlas 
+```
+
+Check interactively Atlas application.log:
+
+```bash
+docker exec -it atlas tail -f /opt/apache-atlas-2.0.0/logs/application.log
 ```
 
 Start Atlas overriding settings by environment variables 

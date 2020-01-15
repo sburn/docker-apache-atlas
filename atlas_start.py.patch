@@ -1,5 +1,5 @@
---- atlas_start.py.orig	2019-05-23 20:59:12.956060416 +0300
-+++ atlas_start.py	2019-05-23 21:12:47.410866696 +0300
+--- atlas_start.py.orig	2019-05-03 08:22:00.000000000 +0300
++++ atlas_start.py	2020-01-16 01:37:16.147611498 +0300
 @@ -18,6 +18,9 @@
  import os
  import sys
@@ -16,7 +16,7 @@
          print "hbase started."
 +        if is_setup:
 +            print "Sleeping 60s due too setup (init run)..."
-+	    sleep(60)
++        sleep(60)
  
      #solr setup
      if mc.is_solr_local(confdir):
@@ -26,7 +26,7 @@
          print "solr started."
 +        if is_setup:
 +            print "Sleeping 60s due too setup (init run)..."
-+	    sleep(60)
++        sleep(60)
  
          print "setting up solr collections..."
          mc.create_solr_collection(mc.solrBinDir(atlas_home), mc.solrConfDir(atlas_home), "vertex_index", logdir)
@@ -36,26 +36,26 @@
          start_atlas_server(atlas_classpath, atlas_pid_file, jvm_logdir, jvm_opts_list, web_app_path)
 -        mc.wait_for_startup(confdir, 300)
 -        print "Apache Atlas Server started!!!\n"
-+        mc.wait_for_startup(confdir, 60)
-+        print "Apache Atlas Server started!\n"
++        mc.wait_for_startup(confdir, 600)
++        print "Apache Atlas Server process started!\n"
 +
 +        atlas_pid_file = mc.pidFile(atlas_home)
 +        try:
 +            pf = file(atlas_pid_file, 'r')
 +            pid = int(pf.read().strip())
 +            pf.close()
++            print("Running Apache Atlas with PID " + str(pid) + "...\n")
 +        except:
 +            pid = None
 +        if not pid:
-+            sys.stderr.write("No process ID file found. Server not running?\n")
++            sys.stderr.write("No PID file found! Server is not running?\nCheck logs: /opt/apache-atlas-2.0.0/logs/application.log\n\n")
 +            return
 +
-+        print("Running atlas with PID " + str(pid) + "...\n")
 +
 +        while os.path.exists(atlas_pid_file):
 +            time.sleep(1)
 +
-+        print "Apache Atlas Server stopped!\n"
++        print "Apache Atlas stopped!\n"
 +
      else:
          process = mc.java("org.apache.atlas.web.setup.AtlasSetup", [], atlas_classpath, jvm_opts_list, jvm_logdir)
