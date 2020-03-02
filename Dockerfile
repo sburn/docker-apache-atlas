@@ -20,11 +20,12 @@ RUN cd /tmp \
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
     && rm apache-atlas-${VERSION}-sources.tar.gz \
     && cd /tmp/atlas-src \
+    && sed -i 's/http:\/\/repo1.maven.org\/maven2/https:\/\/repo1.maven.org\/maven2/g' pom.xml \
     && wget --no-check-certificate https://github.com/apache/atlas/pull/20.patch \
     && git apply ./20.patch \
     && export MAVEN_OPTS="-Xms2g -Xmx2g" \
     && export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" \
-    && mvn clean -DskipTests package -Pdist,embedded-hbase-solr \
+    && mvn clean -DskipTests package -Pdist,embedded-cassandra-solr \
     && tar -xzvf /tmp/atlas-src/distro/target/apache-atlas-${VERSION}-server.tar.gz -C /opt \
     && rm -Rf /tmp/atlas-src
 
