@@ -57,7 +57,13 @@ Start Atlas overriding settings by environment variables
 
 ```bash
 docker run --detach \
-    -e "ATLAS_SERVER_OPTS=-server -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+PrintTenuringDistribution -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=dumps/atlas_server.hprof -Xloggc:logs/gc-worker.log -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1m -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCTimeStamps"
+    -e "ATLAS_SERVER_OPTS=-server -XX:SoftRefLRUPolicyMSPerMB=0 \
+    -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC \
+    -XX:+CMSParallelRemarkEnabled -XX:+PrintTenuringDistribution \
+    -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=dumps/atlas_server.hprof \
+    -Xloggc:logs/gc-worker.log -verbose:gc -XX:+UseGCLogFileRotation \
+    -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1m -XX:+PrintGCDetails \
+    -XX:+PrintHeapAtGC -XX:+PrintGCTimeStamps" \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
