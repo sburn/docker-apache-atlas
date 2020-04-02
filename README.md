@@ -29,7 +29,7 @@ docker run --detach \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
-Please, take into account that at fist run Atlas initialize internal schemas and startup may take up to 10 mins depending on host machine performance.
+Please, take into account that at fist run Atlas initialize internal schemas and `first startup may take up to 10 mins` depending on host machine performance.
 
 Usage options
 -------------
