@@ -35,7 +35,7 @@ RUN apt-get update \
         git \
     && apt-get clean
 
-COPY atlas_start.py.patch atlas_config.py.patch atlas_2966.patch /opt/apache-atlas-${VERSION}/bin/
+COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin/
 COPY pre-conf/atlas-application.properties /opt/apache-atlas-${VERSION}/conf/atlas-application.properties
 COPY pre-conf/atlas-env.sh /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
