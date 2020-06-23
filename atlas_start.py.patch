@@ -16,7 +16,7 @@
          print "hbase started."
 +        if is_setup:
 +            print "Sleeping 60s due too setup (init run)..."
-+        sleep(60)
++            sleep(60)
  
      #solr setup
      if mc.is_solr_local(confdir):
@@ -26,7 +26,7 @@
          print "solr started."
 +        if is_setup:
 +            print "Sleeping 60s due too setup (init run)..."
-+        sleep(60)
++            sleep(60)
  
          print "setting up solr collections..."
          mc.create_solr_collection(mc.solrBinDir(atlas_home), mc.solrConfDir(atlas_home), "vertex_index", logdir)
