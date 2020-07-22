@@ -48,7 +48,7 @@
 +        except:
 +            pid = None
 +        if not pid:
-+            sys.stderr.write("No PID file found! Server is not running?\nCheck logs: /opt/apache-atlas-2.0.0/logs/application.log\n\n")
++            sys.stderr.write("No PID file found! Server is not running?\nCheck logs: /opt/apache-atlas-2.1.0/logs/application.log\n\n")
 +            return
 +
 +
