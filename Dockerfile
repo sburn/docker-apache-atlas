@@ -1,10 +1,7 @@
 FROM scratch
 FROM ubuntu:18.04
 LABEL maintainer="vadim@clusterside.com"
-ARG VERSION=2.0.0
-
-RUN mkdir /tmp/atlas-src
-COPY atlas_2966.patch /tmp/atlas-src
+ARG VERSION=2.1.0
 
 RUN apt-get update \
     && apt-get -y upgrade \
@@ -18,12 +15,11 @@ RUN apt-get update \
         patch \
     && cd /tmp \
     && wget http://mirror.linux-ia64.org/apache/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
-
+    && mkdir /tmp/atlas-src \
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
     && rm apache-atlas-${VERSION}-sources.tar.gz \
     && cd /tmp/atlas-src \
     && sed -i 's/http:\/\/repo1.maven.org\/maven2/https:\/\/repo1.maven.org\/maven2/g' pom.xml \
-    && git apply /tmp/atlas-src/atlas_2966.patch \
     && export MAVEN_OPTS="-Xms2g -Xmx2g" \
     && export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" \
     && mvn clean -Dmaven.repo.local=/tmp/.mvn-repo -Dhttps.protocols=TLSv1.2 -DskipTests package -Pdist,embedded-hbase-solr \
@@ -46,4 +42,4 @@ RUN cd /opt/apache-atlas-${VERSION}/bin \
 RUN cd /opt/apache-atlas-${VERSION}/bin \
     && ./atlas_start.py -setup || true
 
-VOLUME ["/opt/apache-atlas-2.0.0/conf", "/opt/apache-atlas-2.0.0/logs"]
+VOLUME ["/opt/apache-atlas-2.1.0/conf", "/opt/apache-atlas-2.1.0/logs"]
