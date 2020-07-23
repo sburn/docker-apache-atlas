@@ -42,7 +42,7 @@ Gracefully stop Atlas:
 docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/atlas_stop.py
 ```
 
-Check Atlas startup scrypt output:
+Check Atlas startup script output:
 
 ```bash
 docker logs -f atlas 
