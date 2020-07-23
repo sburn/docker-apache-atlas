@@ -13,7 +13,7 @@ If you want to use external Atlas backends, set them up according to [the docume
 
 Basic usage
 -----------
-1. Pull the image:
+1. Pull the latest release image:
 
 ```bash
 docker pull sburn/apache-atlas
