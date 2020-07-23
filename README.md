@@ -16,7 +16,7 @@ Basic usage
 1. Pull the image:
 
 ```bash
-docker pull sburn/apache-atlas
+docker pull sburn/apache-atlas:2.0.0
 ```
 
 2. Start Apache Atlas in a container exposing Web-UI port 21000:
@@ -25,7 +25,7 @@ docker pull sburn/apache-atlas
 docker run --detach \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas \
+    sburn/apache-atlas:2.0.0 \
     /opt/apache-atlas-2.0.0/bin/atlas_start.py
 ```
 
