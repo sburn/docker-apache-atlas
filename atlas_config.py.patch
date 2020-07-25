@@ -33,7 +33,7 @@
 +	    break
 +
 +        if not os.path.exists(pid_file):
-+            sys.stdout.write('\nApache Atlas startup failed!\nCheck logs: /opt/apache-atlas-2.0.0/logs/application.log')
++            sys.stdout.write('\nApache Atlas startup failed!\nCheck logs: /opt/apache-atlas-2.1.0/logs/application.log')
 +            sys.stdout.flush()
 +	    exit()
 +	    break
@@ -44,36 +44,3 @@
      sys.stdout.write('\n')
  
  def run_zookeeper(dir, action, logdir = None, wait=True):
-@@ -555,14 +567,14 @@
- 
-     if zk_url is None:
-         if port is None:
--            cmd = [os.path.join(dir, solrScript), action]
-+            cmd = [os.path.join(dir, solrScript), action, '-force']
-         else:
--            cmd = [os.path.join(dir, solrScript), action, '-p', str(port)]
-+            cmd = [os.path.join(dir, solrScript), action, '-force', '-p', str(port)]
-     else:
-         if port is None:
--            cmd = [os.path.join(dir, solrScript), action, '-z', zk_url]
-+            cmd = [os.path.join(dir, solrScript), action, '-force', '-z', zk_url]
-         else:
--            cmd = [os.path.join(dir, solrScript), action, '-z', zk_url, '-p', port]
-+            cmd = [os.path.join(dir, solrScript), action, '-force', '-z', zk_url, '-p', port]
- 
-     return runProcess(cmd, logdir, False, wait)
- 
-@@ -572,7 +584,7 @@
-     if IS_WINDOWS:
-         solrScript = "solr.cmd"
- 
--    cmd = [os.path.join(dir, solrScript), 'create', '-c', index, '-d', confdir,  '-shards',  solrShards(),  '-replicationFactor', solrReplicationFactor()]
-+    cmd = [os.path.join(dir, solrScript), 'create', '-c', index, '-d', confdir,  '-shards',  solrShards(),  '-replicationFactor', solrReplicationFactor(), '-force']
- 
-     return runProcess(cmd, logdir, False, wait)
- 
-@@ -691,3 +703,4 @@
-     windowsPath = subprocess.Popen(cygpathArgs, stdout=subprocess.PIPE).communicate()[0]
-     windowsPath = windowsPath.strip()
-     return windowsPath
-+
