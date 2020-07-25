@@ -1,7 +1,7 @@
 FROM scratch
 FROM ubuntu:18.04
 LABEL maintainer="vadim@clusterside.com"
-ARG VERSION=1.0.0
+ARG VERSION=1.1.0
 
 RUN apt-get update \
     && apt-get -y upgrade \
@@ -39,7 +39,7 @@ RUN cd /opt/apache-atlas-${VERSION}/bin \
     && patch -b -f < atlas_config.py.patch \
     && sed -i 's/#export JAVA_HOME=/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/g' /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
-VOLUME ["/opt/apache-atlas-1.0.0/conf", "/opt/apache-atlas-1.0.0/logs"]
+VOLUME ["/opt/apache-atlas-1.1.0/conf", "/opt/apache-atlas-1.1.0/logs"]
 
 RUN cd /opt/apache-atlas-${VERSION}/bin \
     && ./atlas_start.py -setup || true
