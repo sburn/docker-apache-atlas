@@ -7,7 +7,7 @@ Apache Atlas Docker image
 
 This `Apache Atlas` is built from the 1.0.0-release source tarball and patched to be run in a Docker container.
 
-Atlas is built `with embedded Cassandra + Solr` and it is pre-initialized (atlas_start.py -setup), so you can run Artas after image download without additional steps.
+Atlas is built `with embedded Cassandra + Solr` and it is pre-initialized (atlas_start.py -setup), so you can run Atlas after image download without additional steps.
 
 If you want to use external Atlas backends, set them up according to [the documentation](https://atlas.apache.org/#/Configuration).
 
