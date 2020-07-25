@@ -34,7 +34,7 @@ Please, take into account that at fist run Atlas initialize internal schemas and
 Usage options
 -------------
 
-Gracefully stop Atlas:
+Stop Atlas gracefully:
 
 ```bash
 docker exec -ti atlas /opt/apache-atlas-1.0.0/bin/atlas_stop.py
