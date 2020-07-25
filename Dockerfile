@@ -39,8 +39,12 @@ RUN cd /opt/apache-atlas-${VERSION}/bin \
     && patch -b -f < atlas_config.py.patch \
     && sed -i 's/#export JAVA_HOME=/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/g' /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
-VOLUME ["/opt/apache-atlas-1.0.0/conf", "/opt/apache-atlas-1.0.0/logs"]
+RUN cd /opt/apache-atlas-${VERSION} \
+    && ./bin/atlas_start.py -setup || true
 
-RUN cd /opt/apache-atlas-${VERSION}/bin \
-    && ./atlas_start.py -setup || true
-
+RUN cd /opt/apache-atlas-${VERSION} \
+    && ./bin/atlas_start.py & \
+    touch /opt/apache-atlas-${VERSION}/logs/application.log \
+    && tail -f /opt/apache-atlas-${VERSION}/logs/application.log | sed '/AuditFilter initialization started (AuditFilter:57)/ q' \
+    && sleep 10 \
+    && /opt/apache-atlas-${VERSION}/bin/atlas_stop.py
