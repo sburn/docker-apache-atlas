@@ -18,7 +18,6 @@ RUN apt-get update \
         patch \
     && cd /tmp \
     && wget http://mirror.linux-ia64.org/apache/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
-
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
     && rm apache-atlas-${VERSION}-sources.tar.gz \
     && cd /tmp/atlas-src \
@@ -33,17 +32,26 @@ RUN apt-get update \
     && apt-get -y --purge remove \
         maven \
         git \
-    && apt-get clean
+    && apt-get -y autoremove \
+    && apt-get -y clean
+
+VOLUME ["/opt/apache-atlas-${VERSION}/conf", "/opt/apache-atlas-${VERSION}/logs"]
 
 COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin/
-COPY pre-conf/atlas-application.properties /opt/apache-atlas-${VERSION}/conf/atlas-application.properties
-COPY pre-conf/atlas-env.sh /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
 RUN cd /opt/apache-atlas-${VERSION}/bin \
     && patch -b -f < atlas_start.py.patch \
     && patch -b -f < atlas_config.py.patch
 
-RUN cd /opt/apache-atlas-${VERSION}/bin \
-    && ./atlas_start.py -setup || true
+COPY conf/hbase/hbase-site.xml.template /opt/apache-atlas-${VERSION}/conf/hbase/hbase-site.xml.template
+COPY conf/atlas-env.sh /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
-VOLUME ["/opt/apache-atlas-2.0.0/conf", "/opt/apache-atlas-2.0.0/logs"]
+RUN cd /opt/apache-atlas-${VERSION} \
+    && ./bin/atlas_start.py -setup || true
+
+RUN cd /opt/apache-atlas-${VERSION} \
+    && ./bin/atlas_start.py & \
+    touch /opt/apache-atlas-${VERSION}/logs/application.log \
+    && tail -f /opt/apache-atlas-${VERSION}/logs/application.log | sed '/AtlasAuthenticationFilter.init(filterConfig=null)/ q' \
+    && sleep 10 \
+    && /opt/apache-atlas-${VERSION}/bin/atlas_stop.py
