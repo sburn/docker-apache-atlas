@@ -1,11 +1,11 @@
-[![Atlas version](https://img.shields.io/badge/Atlas-1.0.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
+[![Atlas version](https://img.shields.io/badge/Atlas-1.1.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 ![Docker Pulls](https://img.shields.io/docker/pulls/sburn/apache-atlas.svg)
 
 Apache Atlas Docker image
 =======================================
 
-This `Apache Atlas` is built from the 1.0.0-release source tarball and patched to be run in a Docker container.
+This `Apache Atlas` is built from the 1.1.0-release source tarball and patched to be run in a Docker container.
 
 Atlas is built `with embedded Cassandra + Solr` and it is pre-initialized (atlas_start.py -setup), so you can run Atlas after image download without additional steps.
 
@@ -16,7 +16,7 @@ Basic usage
 1. Pull the image:
 
 ```bash
-docker pull sburn/apache-atlas:1.0.0
+docker pull sburn/apache-atlas:1.1.0
 ```
 
 2. Start Apache Atlas in a container exposing Web-UI port 21000:
@@ -25,8 +25,8 @@ docker pull sburn/apache-atlas:1.0.0
 docker run --detach \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas:1.0.0 \
-    /opt/apache-atlas-1.0.0/bin/atlas_start.py
+    sburn/apache-atlas:1.1.0 \
+    /opt/apache-atlas-1.1.0/bin/atlas_start.py
 ```
 
 Please, take into account that at fist run Atlas initialize internal schemas and `first startup may take up to 10 mins` depending on host machine performance.
@@ -37,7 +37,7 @@ Usage options
 Stop Atlas gracefully:
 
 ```bash
-docker exec -ti atlas /opt/apache-atlas-1.0.0/bin/atlas_stop.py
+docker exec -ti atlas /opt/apache-atlas-1.1.0/bin/atlas_stop.py
 ```
 
 Check Atlas startup script output:
@@ -49,7 +49,7 @@ docker logs -f atlas
 Check interactively Atlas application.log:
 
 ```bash
-docker exec -it atlas tail -f /opt/apache-atlas-1.0.0/logs/application.log
+docker exec -it atlas tail -f /opt/apache-atlas-1.1.0/logs/application.log
 ```
 
 Start Atlas overriding settings by environment variables 
@@ -67,29 +67,29 @@ docker run --detach \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
-    /opt/apache-atlas-1.0.0/bin/atlas_start.py
+    /opt/apache-atlas-1.1.0/bin/atlas_start.py
 ```
 
 Expose logs directory on the host to view them directly:
 
 ```bash
 docker run --detach \
-    -v ${PWD}/atlas-logs:/opt/apache-atlas-1.0.0/logs \
+    -v ${PWD}/atlas-logs:/opt/apache-atlas-1.1.0/logs \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
-    /opt/apache-atlas-1.0.0/bin/atlas_start.py
+    /opt/apache-atlas-1.1.0/bin/atlas_start.py
 ```
 
 Expose conf directory on the host to edit configuration files directly:
 
 ```bash
 docker run --detach \
-    -v ${PWD}/pre-conf:/opt/apache-atlas-1.0.0/conf \
+    -v ${PWD}/pre-conf:/opt/apache-atlas-1.1.0/conf \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
-    /opt/apache-atlas-1.0.0/bin/atlas_start.py
+    /opt/apache-atlas-1.1.0/bin/atlas_start.py
 ```
 
 Environment Variables
