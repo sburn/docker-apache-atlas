@@ -7,7 +7,7 @@ Apache Atlas Docker image
 
 This `Apache Atlas` is built from the 2.1.0-release source tarball and patched to be run in a Docker container.
 
-Atlas is built with `embedded HBase + Solr` and it is pre-initialized (atlas_start.py -setup), so you can run Atlas after image download without additional steps.
+Atlas is built with `embedded HBase + Solr` and it is pre-initialized, so you can use it right after image download without additional steps.
 
 If you want to use external Atlas backends, set them up according to [the documentation](https://atlas.apache.org/#/Configuration).
 
@@ -29,7 +29,7 @@ docker run --detach \
     /opt/apache-atlas-2.1.0/bin/atlas_start.py
 ```
 
-Please, take into account that the fist startup of Atlas may take up to few mins depending on host machine performance before web-interface become available at port 21000.
+Please, take into account that the fist startup of Atlas may take up to few mins depending on host machine performance before web-interface become available.
 
 Web-UI default credentials: `admin / admin`
 
