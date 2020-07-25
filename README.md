@@ -29,7 +29,7 @@ docker run --detach \
     /opt/apache-atlas-2.1.0/bin/atlas_start.py
 ```
 
-Please, take into account that at fist run Atlas initialize internal schemas and `first startup may take up to 30 mins` depending on host machine performance before web-interface become available at 21000 port.
+Please, take into account that the fist startup of Atlas may take up to few mins depending on host machine performance before web-interface become available at port 21000.
 
 Web-UI default credentials: `admin / admin`
 
@@ -42,16 +42,22 @@ Gracefully stop Atlas:
 docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/atlas_stop.py
 ```
 
-Check Atlas startup scrypt output:
+Check Atlas startup script output:
 
 ```bash
-docker logs -f atlas 
+docker logs -f atlas
 ```
 
 Check interactively Atlas application.log (useful at the first run and for debugging during workload):
 
 ```bash
-docker exec -it atlas tail -f /opt/apache-atlas-2.1.0/logs/application.log
+docker exec -ti atlas tail -f /opt/apache-atlas-2.1.0/logs/application.log
+```
+
+Run the example (this will add sample types and instances along with traits):
+
+```bash
+docker exec -ti atlas tail -f /opt/apache-atlas-2.1.0/bin/quick-start.sh
 ```
 
 Start Atlas overriding settings by environment variables 
