@@ -60,12 +60,6 @@ Run the example (this will add sample types and instances along with traits):
 docker exec -ti atlas tail -f /opt/apache-atlas-2.1.0/bin/quick-start.sh
 ```
 
-Running the example (add sample types and instances along with traits):
-
-```
-docker exec -it atlas /opt/apache-atlas-2.1.0/bin/quick-start.sh
-```
-
 Start Atlas overriding settings by environment variables 
 (to support large number of metadata objects for example):
 
