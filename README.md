@@ -33,8 +33,8 @@ Please, take into account that the fist startup of Atlas may take up to few mins
 
 Web-UI default credentials: `admin / admin`
 
-Usage options
--------------
+Basic usage options
+-------------------
 
 Gracefully stop Atlas:
 
@@ -59,6 +59,9 @@ Run the example (this will add sample types and instances along with traits):
 ```bash
 docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/quick-start.sh
 ```
+
+Advanced usage options
+----------------------
 
 Start Atlas overriding settings by environment variables 
 (to support large number of metadata objects for example):
