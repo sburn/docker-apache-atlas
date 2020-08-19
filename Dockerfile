@@ -45,7 +45,7 @@ RUN cd /opt/apache-atlas-${VERSION}/bin \
 COPY conf/hbase/hbase-site.xml.template /opt/apache-atlas-${VERSION}/conf/hbase/hbase-site.xml.template
 COPY conf/atlas-env.sh /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
 
-COPY conf/gremlin/* /opt/gremlin
+COPY conf/gremlin /opt/gremlin/
 
 RUN cd /opt/apache-atlas-${VERSION} \
     && ./bin/atlas_start.py -setup || true
