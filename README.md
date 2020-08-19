@@ -100,6 +100,36 @@ docker run --detach \
     /opt/apache-atlas-2.1.0/bin/atlas_start.py
 ```
 
+Tinkerpop Gremlin support
+-------------------------
+
+Image contains extras for those who want to play with Janusgraph, and Atlas artifacts using Apache Tinkerpop Gremlin Console (gremlin CLI).
+
+1. You need Atlas container up and running as shown above.
+
+2. Install gremlin-server and gremlin-console by running included automation script:
+```bash
+docker exec -ti atlas /opt/gremlin/install-gremlin.sh
+```
+3. Start gremlin-server in the same Atlas container:
+```bash
+docker exec atlas /opt/gremlin/start-gremlin-server.sh
+```
+4. Finally, run gremlin-console interactively:
+```bash
+docker exec atlas /opt/gremlin/start-gremlin-server.sh
+```
+Gremlin-console usage example:
+```bash
+gremlin>:remote connect tinkerpop.server conf/remote.yaml session
+==>Configured localhost/127.0.0.1:8182-[d1b2d9de-da1f-471f-be14-34d8ea769ae8]
+gremlin> :remote console
+==>All scripts will now be sent to Gremlin Server - [localhost/127.0.0.1:8182]-[d1b2d9de-da1f-471f-be14-34d8ea769ae8] - type ':remote console' to return to local mode
+gremlin> g = graph.traversal()
+==>graphtraversalsource[standardjanusgraph[hbase:[localhost]], standard]
+gremlin> g.V().has('__typeName','hdfs_path').count()
+```
+
 Environment Variables
 ---------------------
 
