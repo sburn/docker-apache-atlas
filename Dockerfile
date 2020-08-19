@@ -15,6 +15,7 @@ RUN apt-get update \
         patch \
     && cd /tmp \
     && wget http://mirror.linux-ia64.org/apache/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
+    && mkdir -p /opt/gremlin \
     && mkdir -p /tmp/atlas-src \
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
     && rm apache-atlas-${VERSION}-sources.tar.gz \
@@ -29,6 +30,7 @@ RUN apt-get update \
     && apt-get -y --purge remove \
         maven \
         git \
+    && apt-get -y remove openjdk-11-jre-headless \
     && apt-get -y autoremove \
     && apt-get -y clean
 
@@ -42,6 +44,8 @@ RUN cd /opt/apache-atlas-${VERSION}/bin \
 
 COPY conf/hbase/hbase-site.xml.template /opt/apache-atlas-${VERSION}/conf/hbase/hbase-site.xml.template
 COPY conf/atlas-env.sh /opt/apache-atlas-${VERSION}/conf/atlas-env.sh
+
+COPY conf/gremlin/* /opt/gremlin
 
 RUN cd /opt/apache-atlas-${VERSION} \
     && ./bin/atlas_start.py -setup || true
