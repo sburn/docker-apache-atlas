@@ -117,7 +117,7 @@ docker exec atlas /opt/gremlin/start-gremlin-server.sh
 ```
 4. Finally, run gremlin-console interactively:
 ```bash
-docker exec atlas /opt/gremlin/run-gremlin-console.sh
+docker exec -ti atlas /opt/gremlin/run-gremlin-console.sh
 ```
 Gremlin-console usage example:
 ```bash
