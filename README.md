@@ -103,7 +103,7 @@ docker run --detach \
 Tinkerpop Gremlin support
 -------------------------
 
-Image contains extras for those who want to play with Janusgraph, and Atlas artifacts using Apache Tinkerpop Gremlin Console (gremlin CLI).
+Image contains build-in extras for those who want to play with Janusgraph, and Atlas artifacts using Apache Tinkerpop Gremlin Console (gremlin CLI).
 
 1. You need Atlas container up and running as shown above.
 
