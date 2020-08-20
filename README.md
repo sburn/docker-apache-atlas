@@ -78,7 +78,7 @@ docker run --detach \
     /opt/apache-atlas-2.1.0/bin/atlas_start.py
 ```
 
-Expose logs directory on the host to view them directly:
+Start Atlas exposing logs directory on the host to view them directly:
 
 ```bash
 docker run --detach \
@@ -89,11 +89,20 @@ docker run --detach \
     /opt/apache-atlas-2.1.0/bin/atlas_start.py
 ```
 
-Expose conf directory on the host to edit configuration files directly:
+Start Atlas exposing conf directory on the host to place and edit configuration files directly:
 
 ```bash
 docker run --detach \
     -v ${PWD}/pre-conf:/opt/apache-atlas-2.1.0/conf \
+    -p 21000:21000 \
+    --name atlas \
+    sburn/apache-atlas \
+    /opt/apache-atlas-2.1.0/bin/atlas_start.py
+```
+Start Atlas with data directory mounted on the host to provide its persistency:
+```bash
+docker run --detach \
+    -v ${PWD}/data:/opt/apache-atlas-2.1.0/data \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
