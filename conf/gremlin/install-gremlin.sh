@@ -1,9 +1,9 @@
 #!/bin/bash
 
+cd /opt
+
 SOURCEDIR=$(pwd)
 GREMLINVER=3.4.6
-
-cd /opt
 
 #wget http://mirror.linux-ia64.org/apache/tinkerpop/${GREMLINVER}/apache-tinkerpop-gremlin-server-${GREMLINVER}-bin.zip
 wget https://archive.apache.org/dist/tinkerpop/${GREMLINVER}/apache-tinkerpop-gremlin-server-${GREMLINVER}-bin.zip
@@ -20,8 +20,9 @@ rm -f /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/lib/atlas-webapp-2.1.0.
 rm -f /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/lib/netty-3.10.5.Final.jar
 rm -f /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/lib/netty-all-4.0.52.Final.jar
 
-ln -s ${SOURCEDIR}/gremlin-server-atlas.yaml /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/conf
-ln -s ${SOURCEDIR}/janusgraph-hbase-solr.properties /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/conf
+ln -s ${SOURCEDIR}/gremlin/gremlin-server-atlas.yaml /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/conf
+ln -s ${SOURCEDIR}/gremlin/janusgraph-hbase-solr.properties /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/conf
+
 rm -f /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/lib/groovy-*.jar
 ln -s /opt/apache-atlas-2.1.0/server/webapp/atlas/WEB-INF/lib/groovy-*.jar /opt/apache-tinkerpop-gremlin-server-${GREMLINVER}/lib
 
