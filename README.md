@@ -130,13 +130,10 @@ docker exec -ti atlas /opt/gremlin/run-gremlin-console.sh
 ```
 Gremlin-console usage example:
 ```bash
-
          \,,,/
          (o o)
 -----oOOo-(3)-oOOo-----
-plugin activated: tinkerpop.server
-plugin activated: tinkerpop.utilities
-plugin activated: tinkerpop.tinkergraph
+
 gremlin>:remote connect tinkerpop.server conf/remote.yaml session
 ==>Configured localhost/127.0.0.1:8182-[d1b2d9de-da1f-471f-be14-34d8ea769ae8]
 gremlin> :remote console
