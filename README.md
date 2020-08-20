@@ -22,7 +22,7 @@ docker pull sburn/apache-atlas
 2. Start Apache Atlas in a container exposing Web-UI port 21000:
 
 ```bash
-docker run --detach \
+docker run -d \
     -p 21000:21000 \
     --name atlas \
     sburn/apache-atlas \
@@ -111,9 +111,9 @@ Image contains build-in extras for those who want to play with Janusgraph, and A
 ```bash
 docker exec -ti atlas /opt/gremlin/install-gremlin.sh
 ```
-3. Start gremlin-server in the same Atlas container:
+3. Start gremlin-server in the same container:
 ```bash
-docker exec atlas /opt/gremlin/start-gremlin-server.sh
+docker exec -d atlas /opt/gremlin/start-gremlin-server.sh
 ```
 4. Finally, run gremlin-console interactively:
 ```bash
