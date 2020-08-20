@@ -13,6 +13,7 @@ RUN apt-get update \
         python \
         openjdk-8-jdk-headless \
         patch \
+	unzip \
     && cd /tmp \
     && wget http://mirror.linux-ia64.org/apache/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
     && mkdir -p /opt/gremlin \
