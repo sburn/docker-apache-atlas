@@ -35,10 +35,11 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get -y clean
 
-RUN groupadd -r -g 1000 builder && groupadd -r -g 1001 rvm && useradd -r -g builder -G rvm -u 1000 builder && \
+RUN groupadd -r -g 1000 builder && useradd -r -g builder -u 1000 builder && \
+    mkdir -p /opt/apache-atlas-${VERSION}/logs && \
     chown -R builder:builder /opt/apache-atlas-${VERSION}
 
-USER builder
+USER 1000
 
 VOLUME ["/opt/apache-atlas-${VERSION}/conf", "/opt/apache-atlas-${VERSION}/logs"]
 
@@ -62,3 +63,5 @@ RUN cd /opt/apache-atlas-${VERSION} \
     && tail -f /opt/apache-atlas-${VERSION}/logs/application.log | sed '/AtlasAuthenticationFilter.init(filterConfig=null)/ q' \
     && sleep 10 \
     && /opt/apache-atlas-${VERSION}/bin/atlas_stop.py
+
+ENTRYPOINT [ "/opt/apache-atlas-2.1.0/bin/atlas_start.py"]
