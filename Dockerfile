@@ -35,6 +35,11 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get -y clean
 
+RUN groupadd -r -g 1000 builder && groupadd -r -g 1001 rvm && useradd -r -g builder -G rvm -u 1000 builder && \
+    chown -R builder:builder /opt/apache-atlas-${VERSION}
+
+USER builder
+
 VOLUME ["/opt/apache-atlas-${VERSION}/conf", "/opt/apache-atlas-${VERSION}/logs"]
 
 COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin/
