@@ -21,7 +21,7 @@ spec:
       serviceAccountName: atlas
       containers:
       - name: atlas
-        image: 828246444075.dkr.ecr.eu-west-1.amazonaws.com/wolt-atlas:2
+        image: 828246444075.dkr.ecr.eu-west-1.amazonaws.com/wolt-atlas:3
         resources:
           limits:
             cpu: "8"
@@ -29,13 +29,15 @@ spec:
           requests:
             cpu: "4"
             memory: 4Gi
+        command:
+          - /opt/apache-atlas-2.1.0/bin/atlas_start.py
         ports:
         - name: http
           containerPort: 21000
         livenessProbe:
           httpGet:
-            path: "/"
-            port: http
+            path: "/login.jsp"
+            port: 21000
           initialDelaySeconds: 240
           periodSeconds: 10
           timeoutSeconds: 5
@@ -43,8 +45,8 @@ spec:
           failureThreshold: 2
         readinessProbe:
           httpGet:
-            path: "/"
-            port: http
+            path: "/login.jsp"
+            port: 21000
           initialDelaySeconds: 180
           periodSeconds: 5
           timeoutSeconds: 2
