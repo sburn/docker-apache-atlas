@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atlas
+spec:
+  minReadySeconds: 30
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: atlas
+  template:
+    metadata:
+      labels:
+        app: atlas
+    spec:
+      serviceAccountName: atlas
+      containers:
+      - name: atlas
+        image: 828246444075.dkr.ecr.eu-west-1.amazonaws.com/wolt-atlas:2
+        resources:
+          limits:
+            cpu: "8"
+            memory: 8Gi
+          requests:
+            cpu: "4"
+            memory: 4Gi
+        command:
+          - /opt/apache-atlas-2.1.0/bin/atlas_start.py
+        ports:
+        - name: http
+          containerPort: 21000
+        # livenessProbe:
+        #   httpGet:
+        #     path: "/api/atlas/admin/version"
+        #     port: http
+        #   initialDelaySeconds: 360
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
+        #   successThreshold: 1
+        #   failureThreshold: 2
+        # readinessProbe:
+        #   httpGet:
+        #     path: "/api/atlas/admin/version"
+        #     port: http
+        #   initialDelaySeconds: 300
+        #   periodSeconds: 5
+        #   timeoutSeconds: 2
+        #   successThreshold: 2
+        #   failureThreshold: 2

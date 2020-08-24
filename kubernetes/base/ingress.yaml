@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: atlas
+  labels:
+    app: atlas
+  annotations:
+    kubernetes.io/ingress.class: 'internal'
+    ingress.kubernetes.io/force-ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+    external-dns.alpha.kubernetes.io/hostname: atlas.d132.wo.lt
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+    - secretName: atlas-tls
+      hosts:
+        - atlas.d132.wo.lt
+  rules:
+  - host: atlas.d132.wo.lt
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: atlas
+          servicePort: 80
