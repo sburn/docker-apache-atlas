@@ -1,0 +1,2 @@
+terraform/**/*key* filter=git-crypt diff=git-crypt
+terraform/**/secretfile* filter=git-crypt diff=git-crypt
