@@ -116,15 +116,15 @@ Image contains build-in extras for those who want to play with Janusgraph, and A
 
 1. You need Atlas container up and running as shown above.
 
-2. Install gremlin-server and gremlin-console into the container by running included automation script:
+2. Install `gremlin-server` and `gremlin-console` into the container by running included automation script:
 ```bash
 docker exec -ti atlas /opt/gremlin/install-gremlin.sh
 ```
-3. Start gremlin-server in the same container:
+3. Start `gremlin-server` in the same container:
 ```bash
 docker exec -d atlas /opt/gremlin/start-gremlin-server.sh
 ```
-4. Finally, run gremlin-console interactively:
+4. Finally, run `gremlin-console` interactively:
 ```bash
 docker exec -ti atlas /opt/gremlin/run-gremlin-console.sh
 ```
