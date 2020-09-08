@@ -29,7 +29,7 @@ docker run -d \
     /opt/apache-atlas-2.1.0/bin/atlas_start.py
 ```
 
-Please, take into account that the fist startup of Atlas may take up to few mins depending on host machine performance before web-interface become available at `http://localhost:21000/`
+Please, take into account that the first startup of Atlas may take up to few mins depending on host machine performance before web-interface become available at `http://localhost:21000/`
 
 Web-UI default credentials: `admin / admin`
 
