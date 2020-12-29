@@ -13,9 +13,9 @@
 @@ -114,6 +117,9 @@
          mc.configure_hbase(atlas_home)
          mc.run_hbase_action(mc.hbaseBinDir(atlas_home), "start", hbase_conf_dir, logdir)
-         print "hbase started."
+         print ("hbase started.")
 +        if is_setup:
-+            print "Sleeping 60s due too setup (init run)..."
++            print ("Sleeping 60s due too setup (init run)...")
 +            sleep(60)
  
      #solr setup
@@ -23,21 +23,21 @@
 @@ -128,6 +134,9 @@
  
          mc.run_solr(mc.solrBinDir(atlas_home), "start", mc.get_solr_zk_url(confdir), mc.solrPort(), logdir)
-         print "solr started."
+         print ("solr started.")
 +        if is_setup:
-+            print "Sleeping 60s due too setup (init run)..."
++            print ("Sleeping 60s due too setup (init run)...")
 +            sleep(60)
  
-         print "setting up solr collections..."
+         print ("setting up solr collections...")
          mc.create_solr_collection(mc.solrBinDir(atlas_home), mc.solrConfDir(atlas_home), "vertex_index", logdir)
 @@ -145,8 +154,27 @@
          web_app_path = mc.convertCygwinPath(web_app_path)
      if not is_setup:
          start_atlas_server(atlas_classpath, atlas_pid_file, jvm_logdir, jvm_opts_list, web_app_path)
 -        mc.wait_for_startup(confdir, 300)
--        print "Apache Atlas Server started!!!\n"
+-        print ("Apache Atlas Server started!!!\n")
 +        mc.wait_for_startup(confdir, 600)
-+        print "Apache Atlas Server process started!\n"
++        print ("Apache Atlas Server process started!\n")
 +
 +        atlas_pid_file = mc.pidFile(atlas_home)
 +        try:
@@ -55,7 +55,7 @@
 +        while os.path.exists(atlas_pid_file):
 +            time.sleep(1)
 +
-+        print "Apache Atlas stopped!\n"
++        print ("Apache Atlas stopped!\n")
 +
      else:
          process = mc.java("org.apache.atlas.web.setup.AtlasSetup", [], atlas_classpath, jvm_opts_list, jvm_logdir)
