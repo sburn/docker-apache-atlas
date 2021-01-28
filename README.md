@@ -57,7 +57,7 @@ docker exec -ti atlas tail -f /opt/apache-atlas-2.1.0/logs/application.log
 Run the example (this will add sample types and instances along with traits):
 
 ```bash
-docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/quick_start.sh
+docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/quick_start.py
 ```
 
 Start Atlas overriding settings by environment variables 
