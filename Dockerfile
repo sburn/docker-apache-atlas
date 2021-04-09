@@ -35,8 +35,6 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get -y clean
 
-VOLUME ["/opt/apache-atlas-${VERSION}/conf", "/opt/apache-atlas-${VERSION}/logs"]
-
 COPY atlas_start.py.patch atlas_config.py.patch /opt/apache-atlas-${VERSION}/bin/
 
 RUN cd /opt/apache-atlas-${VERSION}/bin \
