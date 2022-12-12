@@ -1,6 +1,6 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/sburn/apache-atlas.svg)](https://hub.docker.com/repository/docker/sburn/apache-atlas)
 [![Atlas version](https://img.shields.io/badge/Atlas-2.1.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![Docker Pulls](https://img.shields.io/docker/pulls/sburn/apache-atlas.svg)](https://hub.docker.com/repository/docker/sburn/apache-atlas)
 
 Apache Atlas Docker image
 =======================================
