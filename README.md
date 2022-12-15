@@ -91,7 +91,7 @@ docker run --detach \
     sburn/apache-atlas
 ```
 
-Data parsistency: start Atlas with data directory mounted on the host
+Data persistency: start Atlas with data directory mounted on the host
 
 ```bash
 docker run --detach \
