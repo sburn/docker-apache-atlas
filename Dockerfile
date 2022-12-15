@@ -38,6 +38,7 @@ RUN apt-get update \
         package -Pdist,embedded-hbase-solr \
     && tar --strip 1 -xzvf /tmp/atlas-src/distro/target/apache-atlas-${VERSION}-server.tar.gz -C /apache-atlas \
     && rm -Rf /tmp/atlas-src \
+    && rm -Rf /root/.npm \
     && apt-get -y --purge remove \
         maven \
         unzip \
