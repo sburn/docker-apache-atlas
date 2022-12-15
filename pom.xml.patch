@@ -1,0 +1,14 @@
+--- pom.xml.orig     2022-12-14 10:46:31.615039877 +0000
++++ pom.xml    2022-12-14 10:33:21.019600529 +0000
+@@ -834,6 +834,11 @@
+             <name>Typesafe Repository</name>
+             <url>http://repo.typesafe.com/typesafe/releases/</url>
+         </repository>
++        <repository>
++            <id>maven-restlet</id>
++            <name>Public online Restlet repository</name>
++            <url>https://maven.restlet.talend.com</url>
++        </repository>
+     </repositories>
+
+     <dependencyManagement>

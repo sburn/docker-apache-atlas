@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/atlas_stop.py
+docker exec -ti atlas /apache-atlas/bin/atlas_stop.py

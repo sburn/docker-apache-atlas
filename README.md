@@ -1,11 +1,11 @@
-[![Atlas version](https://img.shields.io/badge/Atlas-2.1.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
+[![Atlas version](https://img.shields.io/badge/Atlas-2.2.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Docker Pulls](https://img.shields.io/docker/pulls/sburn/apache-atlas.svg)](https://hub.docker.com/repository/docker/sburn/apache-atlas)
 
 Apache Atlas Docker image
 =======================================
 
-This `Apache Atlas` is built from the 2.1.0-release source tarball and patched to be run in a Docker container.
+This `Apache Atlas` is built from the 2.2.0-release source tarball and patched to be run in a Docker container.
 
 Atlas is built with `embedded HBase + Solr` and it is pre-initialized, so you can use it right after image download without additional steps.
 
@@ -13,20 +13,14 @@ If you want to use external Atlas backends, set them up according to [the docume
 
 Basic usage
 -----------
-1. Pull the latest release image:
 
-```bash
-docker pull sburn/apache-atlas
-```
-
-2. Start Apache Atlas in a container exposing Web-UI port 21000:
+1. Start Apache Atlas in a container exposing Web-UI port 21000:
 
 ```bash
 docker run -d \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas \
-    /opt/apache-atlas-2.1.0/bin/atlas_start.py
+    sburn/apache-atlas
 ```
 
 Please, take into account that the first startup of Atlas may take up to few mins depending on host machine performance before web-interface become available at `http://localhost:21000/`
@@ -39,7 +33,7 @@ Usage options
 Gracefully stop Atlas:
 
 ```bash
-docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/atlas_stop.py
+docker exec -ti atlas /apache-atlas/bin/atlas_stop.py
 ```
 
 Check Atlas startup script output:
@@ -48,16 +42,16 @@ Check Atlas startup script output:
 docker logs atlas
 ```
 
-Check interactively Atlas application.log (useful at the first run and for debugging during workload):
+Check Atlas application.log (useful at the first run and for debugging during workload):
 
 ```bash
-docker exec -ti atlas tail -f /opt/apache-atlas-2.1.0/logs/application.log
+docker exec -ti atlas tail -f /apache-atlas/logs/application.log
 ```
 
 Run the example (this will add sample types and instances along with traits):
 
 ```bash
-docker exec -ti atlas /opt/apache-atlas-2.1.0/bin/quick_start.py
+docker exec -ti atlas /apache-atlas/bin/quick_start.py
 ```
 
 Start Atlas overriding settings by environment variables 
@@ -74,39 +68,37 @@ docker run --detach \
     -XX:+PrintHeapAtGC -XX:+PrintGCTimeStamps" \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas \
-    /opt/apache-atlas-2.1.0/bin/atlas_start.py
+    sburn/apache-atlas
 ```
 
-Start Atlas exposing logs directory on the host to view them directly:
+Explore logs: start Atlas exposing logs directory on the host
 
 ```bash
 docker run --detach \
-    -v ${PWD}/atlas-logs:/opt/apache-atlas-2.1.0/logs \
+    -v ${PWD}/atlas-logs:/apache-atlas/logs \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas \
-    /opt/apache-atlas-2.1.0/bin/atlas_start.py
+    sburn/apache-atlas
 ```
 
-Start Atlas exposing conf directory on the host to place and edit configuration files directly:
+Custom configuration: start Atlas exposing conf directory on the host
 
 ```bash
 docker run --detach \
-    -v ${PWD}/pre-conf:/opt/apache-atlas-2.1.0/conf \
+    -v ${PWD}/pre-conf:/apache-atlas/conf \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas \
-    /opt/apache-atlas-2.1.0/bin/atlas_start.py
+    sburn/apache-atlas
 ```
-Start Atlas with data directory mounted on the host to provide its persistency:
+
+Data parsistency: start Atlas with data directory mounted on the host
+
 ```bash
 docker run --detach \
-    -v ${PWD}/data:/opt/apache-atlas-2.1.0/data \
+    -v ${PWD}/data:/apache-atlas/data \
     -p 21000:21000 \
     --name atlas \
-    sburn/apache-atlas \
-    /opt/apache-atlas-2.1.0/bin/atlas_start.py
+    sburn/apache-atlas
 ```
 
 Tinkerpop Gremlin support
@@ -118,15 +110,15 @@ Image contains build-in extras for those who want to play with Janusgraph, and A
 
 2. Install `gremlin-server` and `gremlin-console` into the container by running included automation script:
 ```bash
-docker exec -ti atlas /opt/gremlin/install-gremlin.sh
+docker exec -ti atlas /gremlin/install-gremlin.sh
 ```
 3. Start `gremlin-server` in the same container:
 ```bash
-docker exec -d atlas /opt/gremlin/start-gremlin-server.sh
+docker exec -d atlas /gremlin/start-gremlin-server.sh
 ```
 4. Finally, run `gremlin-console` interactively:
 ```bash
-docker exec -ti atlas /opt/gremlin/run-gremlin-console.sh
+docker exec -ti atlas /gremlin/run-gremlin-console.sh
 ```
 Gremlin-console usage example:
 ```bash
@@ -161,6 +153,7 @@ The following environment variables are available for configuration:
 | ATLAS_PID_DIR | <none> | Where pid files are stored. Defatult is logs directory under the base install location
 | ATLAS_EXPANDED_WEBAPP_DIR | <none> | Where do you want to expand the war file. By Default it is in /server/webapp dir under the base install dir.
 
+For additional infomation about configurable options check official Apache Atlas documentation.
 
 Bug Tracker
 -----------
