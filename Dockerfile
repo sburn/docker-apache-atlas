@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 LABEL maintainer="vadim@clusterside.com"
 
-ARG VERSION=2.2.0
+ARG VERSION=2.3.0
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 ENV MAVEN_OPTS="-Xms2g -Xmx2g"
@@ -24,7 +24,7 @@ RUN apt-get update \
         patch \
         unzip \
     && cd /tmp \
-    && wget https://archive.apache.org/dist/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
+    && wget https://dlcdn.apache.org/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
     && rm apache-atlas-${VERSION}-sources.tar.gz \
     && cd /tmp/atlas-src \

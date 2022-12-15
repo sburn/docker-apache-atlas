@@ -1,11 +1,11 @@
-[![Atlas version](https://img.shields.io/badge/Atlas-2.2.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
+[![Atlas version](https://img.shields.io/badge/Atlas-2.3.0-brightgreen.svg)](https://github.com/sburn/docker-apache-atlas)
 [![Docker Pulls](https://img.shields.io/docker/pulls/sburn/apache-atlas.svg)](https://hub.docker.com/repository/docker/sburn/apache-atlas)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 Apache Atlas Docker image
 =======================================
 
-This `Apache Atlas` is built from the 2.2.0-release source tarball and patched to be run in a Docker container.
+This `Apache Atlas` is built from the 2.3.0-release source tarball and patched to be run in a Docker container.
 
 Atlas is built with `embedded HBase + Solr` and it is pre-initialized, so you can use it right after image download without additional steps.
 
