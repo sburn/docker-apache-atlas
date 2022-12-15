@@ -1,6 +1,14 @@
---- atlas_start.py.orig 2022-12-14 14:49:45.000000000 +0000
-+++ atlas_start.py  2022-12-15 15:37:31.143089911 +0000
-@@ -117,6 +117,9 @@
+--- atlas_start.py.orig 2020-01-22 15:10:15.000000000 +0000
++++ atlas_start.py  2022-12-15 19:26:33.306245271 +0000
+@@ -18,6 +18,7 @@
+ import os
+ import sys
+ import traceback
++from time import sleep
+ 
+ import atlas_config as mc
+ 
+@@ -117,6 +118,9 @@
          mc.run_hbase_action(mc.hbaseBinDir(atlas_home), "start", hbase_conf_dir, logdir)
  
          print("Local HBase started!")
@@ -10,7 +18,7 @@
  
      #solr setup
      if mc.is_solr_local(confdir):
-@@ -135,6 +138,9 @@
+@@ -135,6 +139,9 @@
          mc.run_solr(mc.solrBinDir(atlas_home), "start", mc.get_solr_zk_url(confdir), mc.solrPort(), logdir, True, mc.solrHomeDir(atlas_home))
  
          print("Local Solr started!")
@@ -20,7 +28,7 @@
  
          print("\nCreating Solr collections for Atlas using config: " + mc.solrConfDir(atlas_home))
  
-@@ -155,8 +161,22 @@
+@@ -155,8 +162,22 @@
          web_app_path = mc.convertCygwinPath(web_app_path)
      if not is_setup:
          start_atlas_server(atlas_classpath, atlas_pid_file, jvm_logdir, jvm_opts_list, web_app_path)
