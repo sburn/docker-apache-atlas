@@ -67,4 +67,4 @@ RUN ./atlas_start.py & \
     && ./atlas_stop.py \
     && truncate -s0 /apache-atlas/logs/application.log
 
-ENTRYPOINT ["/bin/bash", "-c", "/apache-atlas/bin/atlas_start.py; tail -fF /apache-atlas/logs/application.log"]
+CMD ["/bin/bash", "-c", "/apache-atlas/bin/atlas_start.py; tail -fF /apache-atlas/logs/application.log"]
