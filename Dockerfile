@@ -1,7 +1,7 @@
-FROM ubuntu:20.04 as build
+FROM ubuntu:20.04
 LABEL maintainer="vadim@clusterside.com"
 
-ARG VERSION=2.2.0
+ARG VERSION=2.3.0
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 ENV MAVEN_OPTS="-Xms2g -Xmx2g"
@@ -24,7 +24,7 @@ RUN apt-get update \
         patch \
         unzip \
     && cd /tmp \
-    && wget https://archive.apache.org/dist/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
+    && wget https://dlcdn.apache.org/atlas/${VERSION}/apache-atlas-${VERSION}-sources.tar.gz \
     && tar --strip 1 -xzvf apache-atlas-${VERSION}-sources.tar.gz -C /tmp/atlas-src \
     && rm apache-atlas-${VERSION}-sources.tar.gz \
     && cd /tmp/atlas-src \
@@ -38,29 +38,12 @@ RUN apt-get update \
         package -Pdist,embedded-hbase-solr \
     && tar --strip 1 -xzvf /tmp/atlas-src/distro/target/apache-atlas-${VERSION}-server.tar.gz -C /apache-atlas \
     && rm -Rf /tmp/atlas-src \
+    && rm -Rf /root/.npm \
     && apt-get -y --purge remove \
         maven \
-        git \
         unzip \
     && apt-get -y autoremove \
     && apt-get -y clean
-
-FROM ubuntu:20.04
-LABEL maintainer="vadim@clusterside.com"
-ARG VERSION=2.2.0
-ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-
-COPY --from=build /apache-atlas /apache-atlas
-
-RUN apt-get update \
-    && apt-get -y upgrade \
-    && apt-get -y install apt-utils \
-    && apt-get -y install \
-        maven \
-        wget \
-        python \
-        openjdk-8-jdk-headless \
-        patch
 
 COPY conf/hbase/hbase-site.xml.template /apache-atlas/conf/hbase/hbase-site.xml.template
 COPY atlas_start.py.patch atlas_config.py.patch /apache-atlas/bin/
@@ -84,4 +67,4 @@ RUN ./atlas_start.py & \
     && ./atlas_stop.py \
     && truncate -s0 /apache-atlas/logs/application.log
 
-ENTRYPOINT ["/bin/bash", "-c", "/apache-atlas/bin/atlas_start.py; tail -fF /apache-atlas/logs/application.log"]
+CMD ["/bin/bash", "-c", "/apache-atlas/bin/atlas_start.py; tail -fF /apache-atlas/logs/application.log"]
