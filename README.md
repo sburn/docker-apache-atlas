@@ -11,7 +11,7 @@ Atlas is built with `embedded HBase + Solr` and it is pre-initialized, so you ca
 
 If you want to use external Atlas backends, set them up according to [the documentation](https://atlas.apache.org/#/Configuration).
 
-N.B. The image many not currnetly launch correctly if run in [Docker rootless mode](https://docs.docker.com/engine/security/rootless/)
+N.B. The image many not currently launch correctly if run in [Docker rootless mode](https://docs.docker.com/engine/security/rootless/)
 
 Basic usage
 -----------
