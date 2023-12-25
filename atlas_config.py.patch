@@ -27,16 +27,16 @@
          if count > wait:
 -            s.close()
 -            break
-+	    s.close()
++            s.close()
 +            sys.stdout.write('\nAtlas Web-UI startup timed out! But, wait for it...')
 +            sys.stdout.flush()
-+	    break
++            break
 +
 +        if not os.path.exists(pid_file):
 +            sys.stdout.write('\nApache Atlas startup failed!\nCheck logs: /apache-atlas/logs/application.log')
 +            sys.stdout.flush()
-+	    exit()
-+	    break
++            exit()
++            break
  
          count = count + 1
  

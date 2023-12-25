@@ -18,6 +18,7 @@ RUN apt-get update \
     && apt-get -y install apt-utils \
     && apt-get -y install \
         maven \
+        build-essential \
         wget \
         python \
         openjdk-8-jdk-headless \
